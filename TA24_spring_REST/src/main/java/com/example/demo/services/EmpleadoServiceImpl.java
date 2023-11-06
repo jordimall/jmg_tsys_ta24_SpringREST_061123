@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.IEmpleadoDAO;
 import com.example.demo.dto.Empleado;
+import com.example.demo.enums.TrabajosEnum;
 
 /**
  * 
@@ -37,6 +38,16 @@ public class EmpleadoServiceImpl implements IEmpleadoService {
 	 */
 	public Empleado getIdEmpleado(int id) {
 		return daoEmpleado.findById(id).get();
+	}
+	
+	/**
+	 * Develve una lista de empleados en funciom de el trabajo pasado por parametro
+	 * 
+	 * @param trabajo
+	 * @return List<Empleado>
+	 */
+	public List<Empleado> getAllEmpleadoTrabajo(TrabajosEnum trabajo){
+		return daoEmpleado.findByTrabajo(trabajo);
 	}
 
 	/**

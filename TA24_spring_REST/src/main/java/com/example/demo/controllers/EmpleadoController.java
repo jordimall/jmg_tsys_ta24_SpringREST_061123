@@ -49,6 +49,21 @@ public class EmpleadoController {
 	public Empleado getIdEmpleado(@PathVariable(name = "id") int id) {
 		return serviceEmpleado.getIdEmpleado(id);
 	};
+	
+
+	/**
+	 * Devuelve una lista de empleados en función del trabajo
+	 * 
+	 * @param trabajo
+	 * @return List<Empleado>
+	 */
+	@GetMapping("/all/{trabajo}")
+	public List<Empleado> getAllEmpleadoTrabajo(@PathVariable(name = "trabajo") String trabajo) {
+
+		TrabajosEnum trabajoEnum = TrabajosEnum.valueOf(trabajo.toUpperCase());
+
+		return serviceEmpleado.getAllEmpleadoTrabajo(trabajoEnum);
+	};
 
 	/**
 	 * Añade un empleado a la base de datos
@@ -59,7 +74,6 @@ public class EmpleadoController {
 	@PostMapping("/new")
 	public Empleado addEmpleado(@RequestBody Empleado empleado) {
 		Empleado empleado_xid = new Empleado();
-		empleado.setTrabajo(TrabajosEnum.valueOf(String.valueOf(empleado.getTrabajo()).toUpperCase()));
 		empleado.setSalario(empleado.getTrabajo().getSueldo());
 
 		empleado_xid = serviceEmpleado.addEmpleado(empleado);
