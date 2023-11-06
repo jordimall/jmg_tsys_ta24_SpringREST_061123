@@ -3,7 +3,11 @@
  */
 package com.example.demo.dto;
 
+import com.example.demo.enums.TrabajosEnum;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,7 +24,8 @@ public class Empleado {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nombre;
-	private String trabajo;
+	@Enumerated(EnumType.STRING)
+	private TrabajosEnum trabajo;
 	private double salario;
 
 	/**
@@ -35,7 +40,7 @@ public class Empleado {
 	 * @param trabajo
 	 * @param salario
 	 */
-	public Empleado(int id, String nombre, String trabajo, double salario) {
+	public Empleado(int id, String nombre, TrabajosEnum trabajo, double salario) {
 		this.id = id;
 		this.nombre = nombre;
 		this.trabajo = trabajo;
@@ -59,7 +64,7 @@ public class Empleado {
 	/**
 	 * @return the trabajo
 	 */
-	public String getTrabajo() {
+	public TrabajosEnum getTrabajo() {
 		return trabajo;
 	}
 
@@ -87,7 +92,7 @@ public class Empleado {
 	/**
 	 * @param trabajo the trabajo to set
 	 */
-	public void setTrabajo(String trabajo) {
+	public void setTrabajo(TrabajosEnum trabajo) {
 		this.trabajo = trabajo;
 	}
 
@@ -102,5 +107,4 @@ public class Empleado {
 	public String toString() {
 		return "Empleado [id=" + id + ", nombre=" + nombre + ", trabajo=" + trabajo + ", salario=" + salario + "]";
 	}
-
 }
